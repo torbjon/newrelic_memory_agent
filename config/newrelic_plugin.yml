@@ -1,0 +1,10 @@
+newrelic:
+  license_key: "409e2276a94c875dcf5887e795a316b008dfbdc7"
+
+#
+# Agent Configuration:
+#
+agents:
+  sidekiq_status_agent:
+    -
+      instance_name: "Euroki"

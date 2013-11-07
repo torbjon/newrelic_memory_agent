@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'bundler/setup'
+require 'newrelic_plugin'
+
+require 'vmstat'
+
+module MemoryAgent
+
+  class Agent < NewRelic::Plugin::Agent::Base
+    agent_guid 'com.berjoza.newrelic-memory-agent'
+    agent_config_options :instance_name
+    agent_version '0.0.2'
+    agent_human_labels('RAM') { instance_name }
+
+    def poll_cycle
+      report_metric 'Memory/Free', 'Free',     Vmstat.snapshot.memory.free_bytes
+      report_metric 'Memory/Wired', 'Wired',   Vmstat.snapshot.memory.wired_bytes
+      report_metric 'Memory/Used', 'Used',     Vmstat.snapshot.memory.active_bytes
+      report_metric 'Memory/Unused', 'Unused', Vmstat.snapshot.memory.inactive_bytes
+    end
+  end
+
+  NewRelic::Plugin::Config.config_file = File.dirname(__FILE__) + '/config/newrelic_plugin.yml'
+  NewRelic::Plugin::Setup.install_agent :sidekiq_status_agent, self
+
+  NewRelic::Plugin::Run.setup_and_run
+
+end
