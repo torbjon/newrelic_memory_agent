@@ -1,6 +1,6 @@
 ## New Relic Memory Plugin
 
-Monitors server's Free, used, unused and wired memory(RAM)
+Monitors server's Free, used, unused and wired memory(RAM).
 
 ### Requirements
 
@@ -29,3 +29,5 @@ In this case you can check its status by running
 and stop it with
 
   ./newrelic_memory_agent.daemon stop
+
+P.S Thanks to Steven Eksteen and his plugin [newrelic_sidekiq_agent](https://github.com/mscifo/newrelic_sidekiq_agent).
