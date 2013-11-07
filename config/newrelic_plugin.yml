@@ -1,5 +1,5 @@
 newrelic:
-  license_key: "409e2276a94c875dcf5887e795a316b008dfbdc7"
+  license_key: "YOUR_LICENCE_KEY"
 
 #
 # Agent Configuration:
@@ -7,4 +7,4 @@ newrelic:
 agents:
   sidekiq_status_agent:
     -
-      instance_name: "Euroki"
+      instance_name: "Instance Name"
